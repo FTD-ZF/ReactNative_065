@@ -8,13 +8,12 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { PageComponent, RouteName } from './root';
+import { PageComponent, RouteName, StackScreenList } from './root';
 import CustomBottomTab from './components/CustomBottomTab';
 import CustomHeaderView from './components/CustomHeaderView';
 
 
-
-
+//底部切换布局
 const TabNav = () => {
     const Tab = createBottomTabNavigator();
     return (
@@ -45,11 +44,10 @@ const TabNav = () => {
     )
 }
 
-
 export const NavigationView = () => {
 
     const Stack = createStackNavigator()
-    
+
     return (
 
         <NavigationContainer>
@@ -58,16 +56,15 @@ export const NavigationView = () => {
                 <Stack.Screen name={'BaseTabNav'} component={TabNav}
                     options={() => ({ headerShown: false })} />
                 {/* 页面 */}
-                <Stack.Screen name={RouteName.Details} component={PageComponent.Details}
-                    options={(nav) => ({
-                        header: (props) => <CustomHeaderView title={'详情'}  {...props} />
+                {
+                    StackScreenList.map((item, index) => {
+                        return <Stack.Screen key={index} name={item.name} component={item.component}
+                            options={(nav) => ({
+                                header: (props) => <CustomHeaderView title={item.title}  {...props} />
+                            })
+                            } />
                     })
-                    } />
-                <Stack.Screen name={RouteName.FirstDetails} component={PageComponent.FirstDetails}
-                    options={(nav) => ({
-                        header: (props) => <CustomHeaderView title={'FirstDetails'}  {...props} />
-                    })
-                    } />
+                }
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -24,10 +24,11 @@ export default class FirstDetails extends BaseComponent {
     }
 
     componentDidMount() {
-        console.log('===componentDidMount====FirstDetails======')
-        console.log(this.props)
-        console.log('this.NavCanGoBack()==FirstDetails=')
-        console.log(this.NavCanGoBack())
+
+        const { navigation } = this.props;
+        navigation.setOptions({
+            headerShown: false,//隐藏当前标题栏
+        })
     }
 
     componentUnWillMount() {
@@ -37,7 +38,7 @@ export default class FirstDetails extends BaseComponent {
     toPop() {
         const { testId, callBack, } = this.NavRouteParams()
         callBack('返回的值123')
-        this.NavPop(1);
+        this.NavPop();
     }
     toPopTop() {
         this.NavPopToTop()

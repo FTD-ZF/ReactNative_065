@@ -11,6 +11,7 @@ import {
     View,
 } from 'react-native';
 import BtnView from '../../components/BtnView';
+import CustomHeaderView from '../../components/CustomHeaderView';
 import MainView from '../../components/MainView';
 import { RouteName } from '../../root';
 import BaseComponent from '../baseComponent';
@@ -25,13 +26,12 @@ export default class Index extends BaseComponent {
     }
 
     componentDidMount() {
-        // this.props.navigation.setParams({
-        //     refreshPage: () => this._refreshPage()
-        // })
+      
         console.log('===componentDidMount====details======')
-        console.log(this.props)
-        console.log('this.NavCanGoBack()==details=')
-        console.log(this.NavCanGoBack())
+        const { navigation } = this.props;
+        navigation.setOptions({
+            header: (props) => (<CustomHeaderView title={'修改当前标题'}  {...props} />)
+        })
 
     }
 
@@ -42,7 +42,6 @@ export default class Index extends BaseComponent {
     toNext() {
         let params = {
             testId: '123',
-            // update: () => this.refreshPage()
             callBack: (params) => this.refreshPage(params)
 
         }
@@ -64,7 +63,7 @@ export default class Index extends BaseComponent {
                 <View style={styles.container}>
                     <Text style={{ fontSize: 20, marginVertical: 15 }} >{title}</Text>
                     <BtnView title='toNextDetails' onPress={() => this.toNext()} />
-                    <View style={{width:100,height:1000}}  />
+                    <View style={{ width: 100, height: 1000 }} />
                     <Text>123</Text>
                 </View>
             </MainView>

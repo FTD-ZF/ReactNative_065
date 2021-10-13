@@ -6,7 +6,7 @@ import FirstDetails from './pages/details/firstDetails'
 
 
 /**
- * 页面添加时使用该值
+ * 页面添加时使用该值（页面的路径）
  */
 export const PageComponent = {
     Home,
@@ -17,14 +17,23 @@ export const PageComponent = {
 }
 
 /**
- * 跳转页面时使用该值跳转
+ * 跳转页面时使用该值跳转（定义的页面名称）
  */
 export const RouteName = {
     //底部切换页面
     HomeTab: 'HomeTab',
     CenterTab: 'CenterTab',
     MineTab: 'MineTab',
-    //其他页面
+    //其他页面-Stack.Screen
     Details: 'Details',
     FirstDetails: 'FirstDetails',
 }
+
+// Stack.Screen中使用，添加顺序随意
+// name-页面名称 component-页面路径值 title-标题栏名字
+export const StackScreenList = [
+    // Details页面
+    { name: RouteName.Details, component: PageComponent.Details, title: 'Details标题' },
+    // FirstDetails页面
+    { name: RouteName.FirstDetails, component: PageComponent.FirstDetails, title: 'FirstDetails标题' },
+]

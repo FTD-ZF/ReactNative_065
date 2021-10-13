@@ -49,7 +49,7 @@ export default class BaseComponent extends Component {
         //         return (<Text style={{ marginTop: 80 }} >9999</Text>)
         //     }
         // })
-        
+
     }
 
 
@@ -67,12 +67,13 @@ export default class BaseComponent extends Component {
     }
 
     /**
-     * 返回页面数
+     * 返回页面数 默认1层
      * @param {*} position 
      */
-    NavPop(position) {
+    NavPop(position = 1) {
         this.props.navigation.pop(position);
     }
+
     /**
      * 返回最初页面
      */
@@ -80,11 +81,17 @@ export default class BaseComponent extends Component {
         this.props.navigation.popToTop();
     }
 
-    //获取路由传递的参数
+    /**
+     * 
+     * @returns 获取路由传递的参数
+     */
     NavRouteParams() {
         return this.props.route.params;
     }
-    //
+    /**
+     * 
+     * @returns 是否可以在堆栈中导航回来--是否可以返回
+     */
     NavCanGoBack() {
         return this.props.navigation.canGoBack()
     }
