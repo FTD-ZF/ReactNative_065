@@ -60,3 +60,4 @@ buck-out/
 *.lock
 __tests__/
 .vscode
+package-lock.json
