@@ -13,6 +13,7 @@ import {
 import BtnView from '../../components/BtnView';
 import MainView from '../../components/MainView';
 import BaseComponent from '../baseComponent';
+import { RouteName } from '../../root';
 
 export default class FirstDetails extends BaseComponent {
 
@@ -39,9 +40,33 @@ export default class FirstDetails extends BaseComponent {
         const { testId, callBack, } = this.NavRouteParams()
         callBack('返回的值123')
         this.NavPop();
+
+
     }
+
+    //返回指定页面
     toPopTop() {
-        this.NavPopToTop()
+
+        const aa = {
+            "stale": false,
+            "type": "tab",
+            "index": 1,
+            "routeNames": ["HomeTab", "CenterTab", "MineTab"],
+            // "history": [{ "type": "route", "key": "HomeTab-fjYsW_eJ7Ip6-Onj4yPg1" }],
+            "routes": [{ "name": "HomeTab", "key": "HomeTab-fjYsW_eJ7Ip6-Onj4yPg1" },
+            { "name": "CenterTab", "key": "CenterTab-C1_KB5Yf1NyxrBguUYIsP" },
+            { "name": "MineTab", "key": "MineTab-AMt72YU_A-WLstFwhmBWq" }]
+        }
+
+
+        // console.log(this.props)
+        // console.log(this.props.navigation.getState())
+
+        // this.NavPopToTop()
+
+
+        this.NavPages({ name: RouteName.CenterTab, merge: true })
+        // this.props.navigation.reset(aa)
     }
 
     render() {
