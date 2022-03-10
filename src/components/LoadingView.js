@@ -12,11 +12,14 @@ const LoadingView = (props) => {
     const { isLoading = false, loadingTitle = '加载中...' } = props;
 
     return (
-        <View style={[styles.container, { display: isLoading ? '' : 'none' }]}>
-            <View style={styles.loading}>
-                <ActivityIndicator animating={true} size='large' color='white' />
-                <Text style={styles.loadingTitle}>{loadingTitle}</Text>
-            </View>
+        <View style={isLoading ? styles.container : {}}>
+            {
+                isLoading ?
+                    <View style={styles.loading}>
+                        <ActivityIndicator animating={true} size='large' color='white' />
+                        <Text style={styles.loadingTitle}>{loadingTitle}</Text>
+                    </View> : <View />
+            }
         </View>
     );
 }

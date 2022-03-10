@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { PageComponent, RouteName, StackScreenList } from './root';
 import CustomBottomTab from './components/CustomBottomTab';
 import CustomHeaderView from './components/CustomHeaderView';
+import { navigationRef } from './rootNavigation';
 
 
 //底部切换布局
@@ -50,7 +51,7 @@ export const NavigationView = () => {
 
     return (
 
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             <Stack.Navigator screenOptions={{ presentation: 'card' }} >
                 {/* tab 切换布局 */}
                 <Stack.Screen name={'BaseTabNav'} component={TabNav}

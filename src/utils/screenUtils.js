@@ -26,7 +26,10 @@ const X_MAX_HEIGHT = 896;
 
 
 //ios全面屏幕系列
-const iosSeries = ['iPhone10', 'iPhone11', 'iPhone12', 'iPhone13']
+const iosSeries = ['iPhone10', 'iPhone11', 'iPhone12', 'iPhone13', 'iPhone14']
+
+export const titleHeight = 44;
+export const titleBarHeight = titleHeight + screen.statusBarHeight;
 
 export const isIphoneX = () => {
     if (Platform.OS === 'ios') {

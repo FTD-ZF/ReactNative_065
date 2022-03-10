@@ -11,15 +11,19 @@ import {
     Text,
     View,
 } from 'react-native';
-import BtnView from '../../components/BtnView';
+
 import { RouteName } from '../../root';
-import BaseComponent from '../baseComponent';
 import { getDeviceId, } from 'react-native-device-info';
 import MainView from '../../components/MainView';
-import CustomHeaderView from '../../components/CustomHeaderView';
+import BaseComponent from '../baseComponent';
+import { observer, } from "mobx-react";
+import BtnView from '../../components/BtnView';
+import indexStore from '../../store/indexStore';
+import firstStore from '../../store/firstStore';
+import rootStore from '../../store/rootStore';
 
 
-
+@observer
 export default class Index extends BaseComponent {
 
     constructor(props) {
@@ -35,21 +39,40 @@ export default class Index extends BaseComponent {
 
     componentDidMount() {
         console.log('===机型==' + getDeviceId())
+        indexStore.toTestRequest()
+
     }
+
 
     componentUnWillMount() {
 
     }
 
     toDetails() {
-        this.NavPages(RouteName.Details)
+        // indexStore.toTestFunc_navigate()
+        indexStore.toTestFunc_navigate()
+        // this.NavPages(RouteName.Details)
+    }
+
+    toChangeValue() {
+        // firstStore.testValue = '456'
+        // indexStore.toChangeValue()
+        firstStore.changeValue()
     }
 
     render() {
 
+        const { indexValue, } = indexStore;
+        // const { testValue } = firstStore;
+        // const { isLoading } = rootStore;
+        const { } = this.state;
+
+        // console.log('====isLoading======' + isLoading)
         return (
-            <MainView isLoading={false} boolTab={true} >
+            <MainView boolTab={true} boolShowEmpty={false}  >
                 <BtnView title={'跳转详情'} onPress={() => this.toDetails()} />
+
+                <BtnView title={'修改值' + indexValue} onPress={() => this.toChangeValue()} />
             </MainView>
         );
     }

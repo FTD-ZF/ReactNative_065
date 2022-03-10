@@ -14,8 +14,10 @@ import { NavigationView } from './src/navigation';
 // import { Toast, TopView } from 'teaset-pro'
 import NetInfo from "@react-native-community/netinfo";
 import { Toast, TopView } from 'teaset'
+import { observer, } from "mobx-react";
 
 
+@observer
 export default class App extends Component {
 
   componentDidMount() {
@@ -79,6 +81,7 @@ export default class App extends Component {
   }
 
   render() {
+    
     return (
       <TopView>
         <NavigationView />

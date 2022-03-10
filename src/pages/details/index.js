@@ -14,8 +14,12 @@ import BtnView from '../../components/BtnView';
 import CustomHeaderView from '../../components/CustomHeaderView';
 import MainView from '../../components/MainView';
 import { RouteName } from '../../root';
+import { getNavParams, NavPages } from '../../rootNavigation';
 import BaseComponent from '../baseComponent';
+import { observer, } from "mobx-react";
+import firstStore from '../../store/firstStore';
 
+@observer
 export default class Index extends BaseComponent {
 
     constructor(props) {
@@ -26,12 +30,16 @@ export default class Index extends BaseComponent {
     }
 
     componentDidMount() {
-      
+
         console.log('===componentDidMount====details======')
         const { navigation } = this.props;
         navigation.setOptions({
             header: (props) => (<CustomHeaderView title={'修改当前标题'}  {...props} />)
         })
+
+        console.log(getNavParams())
+        console.log('==============')
+        firstStore.getNavContent_Details()
 
     }
 
@@ -46,7 +54,8 @@ export default class Index extends BaseComponent {
 
         }
         // console.log(this.props)
-        this.NavPages(RouteName.FirstDetails, params)
+        // this.NavPages(RouteName.FirstDetails, params)
+        NavPages(RouteName.FirstDetails, params)
     }
 
     refreshPage(params) {

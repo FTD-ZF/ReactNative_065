@@ -14,6 +14,7 @@ import BtnView from '../../components/BtnView';
 import MainView from '../../components/MainView';
 import BaseComponent from '../baseComponent';
 import { RouteName } from '../../root';
+import { getNavParams } from '../../rootNavigation';
 
 export default class FirstDetails extends BaseComponent {
 
@@ -37,7 +38,8 @@ export default class FirstDetails extends BaseComponent {
     }
 
     toPop() {
-        const { testId, callBack, } = this.NavRouteParams()
+        // const { testId, callBack, } = this.NavRouteParams()
+        const { testId, callBack, } = getNavParams()
         callBack('返回的值123')
         this.NavPop();
 

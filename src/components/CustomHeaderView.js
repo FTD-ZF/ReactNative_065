@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Platform, Pressable, StyleSheet, StatusBar } from 'react-native';
 import { ImgPath } from '../assets';
-import { isIphoneX, screen } from '../utils/screenUtils';
+import { isIphoneX, screen, titleHeight } from '../utils/screenUtils';
 import { AppColors } from '../utils/stylesUtils';
 
 
@@ -16,7 +16,7 @@ const CustomHeaderView = (props) => {
 
     const { title, boolBack = true, boolShare = false, navigation } = props;
 
-    const titleHeight = 44;
+
     const titleBarHeight = titleHeight + screen.statusBarHeight;
 
     const onBackPress = () => {
@@ -29,21 +29,16 @@ const CustomHeaderView = (props) => {
         <View style={[styles.main, { height: titleBarHeight, paddingTop: screen.statusBarHeight }]}>
             {/* 左边 */}
             <Pressable style={[styles.left, { height: titleHeight }]} onPress={onBackPress} >
-                <Image source={ImgPath.Nav.back} style={[
-                    styles.backIcon, {
-                        display: boolBack ? 'flex' : 'none'
-                    }]} />
+                {boolBack ? <Image source={ImgPath.Nav.back} style={[
+                    styles.backIcon,]} /> : <View />}
             </Pressable>
             {/* 标题 */}
             <View style={styles.center} >
                 <Text style={styles.title} >{title}</Text>
             </View>
             {/* 右边 */}
-            <Pressable style={[styles.left, { height: titleHeight }]} >
-                <Text style={{
-                    color: AppColors.dark3,
-                    display: boolShare ? 'flex' : 'none'
-                }}>分享</Text>
+            <Pressable style={[styles.left, { height: titleHeight, }]} >
+                {boolShare ? <Text style={{ color: AppColors.dark3 }}>分享</Text> : <View />}
             </Pressable>
         </View>
     );
@@ -64,7 +59,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: 'red'
     },
     center: {
         display: 'flex',
