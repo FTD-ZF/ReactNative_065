@@ -3,6 +3,7 @@ import Center from './pages/center'
 import Mine from './pages/mine'
 import Details from './pages/details'
 import FirstDetails from './pages/details/firstDetails'
+import TestView from './pages/home/testView'
 
 
 /**
@@ -14,6 +15,7 @@ export const PageComponent = {
     Mine,
     Details,
     FirstDetails,
+    TestView
 }
 
 /**
@@ -27,6 +29,7 @@ export const RouteName = {
     //其他页面-Stack.Screen
     Details: 'Details',
     FirstDetails: 'FirstDetails',
+    TestView: 'TestView',
 }
 
 // Stack.Screen中使用，添加顺序随意
@@ -36,4 +39,6 @@ export const StackScreenList = [
     { name: RouteName.Details, component: PageComponent.Details, title: 'Details标题' },
     // FirstDetails页面
     { name: RouteName.FirstDetails, component: PageComponent.FirstDetails, title: 'FirstDetails标题' },
+    { name: RouteName.TestView, component: PageComponent.TestView, title: '函数式组件进一步使用' },
+
 ]

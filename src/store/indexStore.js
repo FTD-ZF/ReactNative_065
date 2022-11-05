@@ -1,5 +1,6 @@
 import { CommonActions, } from '@react-navigation/core';
 import { observable, action, makeObservable, configure, makeAutoObservable, } from 'mobx';
+import { LoginControllerRegister } from '../api/swagger/login';
 import { RouteName } from '../root';
 import { getNavParams, NavPages } from '../rootNavigation';
 import HttpUtils from '../utils/httpUtils';
@@ -29,6 +30,8 @@ class IndexStore {
 
     indexValue = '1'
 
+    @observable token = '';
+
 
 
 
@@ -46,25 +49,35 @@ class IndexStore {
     toTestRequest = async () => {
 
         await this.testSetTimeout()
-     
+
         await HttpUtils.getRequest('https://www.baidu.com/', {}).then((res) => {
             console.log('--==123==')
             console.log(res)
-        
+
         })
-     
+
 
     }
 
     testSetTimeout() {
-        rootStore.isLoading=true;
+        rootStore.isLoading = true;
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 console.log('===========request=====')
                 resolve('123')
-                rootStore.isLoading=false;
+                rootStore.isLoading = false;
             }, 5000);
         })
+
+    }
+
+    toLogin = (params) => {
+       
+        return new Promise((resolve, reject) => {
+            const result = LoginControllerRegister(params)
+            resolve(result)
+        })
+
 
     }
 
